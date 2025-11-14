@@ -127,6 +127,38 @@
           "text": "Handled issue submission. New: 1, Matches: 0"
         }
       ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "MCSL/WSS for FedEx carrier addition, the Hazardous fields are mandatory to complete the \"Other Details\" setup"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "i am not able t ofind any issue"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
     }
   ]
 }
