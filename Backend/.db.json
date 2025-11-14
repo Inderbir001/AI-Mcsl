@@ -159,6 +159,22 @@
           "text": "Handled issue submission. New: 1, Matches: 0"
         }
       ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "The issue is that i am not able to login"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
     }
   ]
 }
