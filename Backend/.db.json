@@ -1,0 +1,20 @@
+{
+  "history": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    }
+  ]
+}
