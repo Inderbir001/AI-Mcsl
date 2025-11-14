@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="QA Tracker — Create issues, detect duplicates and view saved issues.">
+    <title>QA Tracker — Create</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="./css/styles.css">
+    
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: var(--bg-chat-area);
+            padding: 30px;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .input-modal-field {
+          width: 100%;
+          padding: 12px 14px;
+          border-radius: 8px;
+          background: var(--bg-main);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          color: inherit;
+          outline: none;
+          font-size: 16px;
+        }
+        .input-area-modal {
+          width: 100%;
+          padding: 12px 14px;
+          border-radius: 8px;
+          background: var(--bg-main);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          color: inherit;
+          outline: none;
+          resize: vertical;
+          font-size: 16px;
+        }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="app-root"> 
+        <div class="container">
+            <aside class="flex flex-col bg-sidebar" aria-label="Saved issues panel">
+                <div class="sidebar-header">
+                    <div class="logo">QA</div>
+                    <div class="title"></div>
+                    <a href="./searchExistingIssuesPage.html" class="btn-link">Search a Issue</a>
+                </div>
+                
+                <div id="issuesList" class="issues-list flex-1 overflow-y-auto space-y-3 px-1 pb-2" aria-live="polite">
+                    <div class="text-sm text-slate-400">No saved issues yet.</div>
+                    <div class="issue-item">
+                        <div class="title">App Crashes on Login</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 flex flex-col gap-2 p-2">
+                    <button id="refreshBtn" class="btn-primary">Refresh Issues</button>
+                    <button id="clearIssuesBtn" class="btn-danger">Clear Issues</button>
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="text-xs text-slate-400">Total: <span id="issuesCount">0</span></div>
+                    </div>
+                </div>
+                
+                <pre id="rawDump" class="raw-dump"></pre>
+            </aside>
+
+            <div class="main-chat-content">
+                <main role="main">
+                    <section>
+                        <div id="chat-log" class="chat-log" aria-label="Chat log">
+                            <div class="msg bot">
+                                <div class="msg-content"> 
+                                    <div class="avatar">AI</div>
+                                    <div class="bubble">
+                                        Welcome to QA Tracker. Use the input below, or click **"New Structured Issue"** to enter a title/description.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+                
+                <div class="input-area-wrapper">
+                    <div class="w-full max-w-4xl flex justify-end mb-3">
+                         <button id="newIssueBtn" class="btn-plain">
+                            + New Structured Issue
+                        </button>
+                    </div>
+
+                    <form id="message-form" autocomplete="off" novalidate>
+                        <button id="clearBtn" type="button" class="btn-plain">Clear</button>
+                        <input
+                            id="message-input"
+                            name="message"
+                            type="text"
+                            class="input"
+                            placeholder="Message QA Tracker..."
+                            aria-label="Issue input"
+                            required
+                        />
+                        <button class="btn-send" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                    <p class="tip">
+                        Tip: use "ISSUE_TITLE: ... ISSUE_DESCRIPTION: ..." for quick structured submission.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="issueModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="text-xl font-semibold mb-6">Submit New Issue Details</div>
+            <form id="issue-submission-form" class="flex flex-col gap-4">
+                
+                <label for="issueTitle" class="sr-only">Issue Title</label>
+                <input
+                    id="issueTitle"
+                    name="title"
+                    type="text"
+                    class="input-modal-field"
+                    placeholder="Required: Concise Title (e.g., App crashes on login)"
+                    required
+                />
+                
+                <label for="issueDescription" class="sr-only">Issue Description</label>
+                <textarea
+                    id="issueDescription"
+                    name="description"
+                    rows="6"
+                    class="input-area-modal"
+                    placeholder="Required: Detailed steps to reproduce, expected vs. actual behavior."
+                    required
+                ></textarea>
+                
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" id="cancelBtn" class="btn-plain">Cancel</button>
+                    <button type="submit" class="btn-primary">Save & Submit Issue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/common.js" defer></script>
+    <script src="./js/create.js" defer></script>
+</body>
+</html>

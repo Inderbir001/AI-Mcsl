@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="QA Tracker — Query saved issues and find best matches from stored issues.">
+    <title>QA Tracker — Query Issues</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    
+    <style>
+        /* This style block should ideally be in your styles.css */
+        .query-input-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the content inside the full-width bar */
+            padding: 24px;
+            position: sticky; 
+            bottom: 0;
+            background: var(--bg-main);
+            box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+            z-index: 10; /* Ensure it's above other content */
+        }
+        .query-footer-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            max-width: 800px; /* Constrain its width like the chat input */
+            padding: 8px 16px; /* Padding inside the form container */
+            background: var(--bg-chat-area); /* Dark background */
+            border-radius: var(--radius); /* Rounded corners */
+            border: 1px solid rgba(255,255,255,0.1); /* Subtle border */
+            box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle shadow */
+        }
+        .query-footer-form .input-area {
+            flex: 1; /* Take up available space */
+            padding: 0; /* Remove internal padding, handled by parent form */
+            border: none; /* No internal border */
+            background: transparent; /* Transparent background */
+            resize: none; /* Prevent resizing */
+            min-height: 24px; /* Ensure it's not too small vertically */
+            height: auto; /* Allow content to dictate height */
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .query-footer-form .input-area:focus {
+            box-shadow: none; /* Remove focus shadow from the text area itself */
+        }
+        .query-footer-form .btn-action {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: color .12s;
+            white-space: nowrap;
+        }
+        .query-footer-form .btn-action:hover {
+            color: var(--text-main);
+        }
+        /* Adjust main content padding-bottom to ensure it doesn't overlap the fixed footer */
+        .main-chat-content {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            padding-bottom: 0; 
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="app-root">
+        <div class="container">
+            <aside class="flex flex-col bg-sidebar" aria-label="Saved issues panel">
+                <div class="sidebar-header">
+                    <div class="logo" style="background: #e91e63;">ASK</div>
+                    <div class="title"></div>
+                    <a href="./addNewIssue.html" class="btn-link">Log New Issue</a>
+                </div>
+
+                <div id="issuesPanel" class="space-y-2 overflow-y-auto flex-1 p-2" role="region" aria-live="polite">
+                    <div class="text-sm text-slate-400">No issues loaded.</div>
+                </div>
+                
+                <div class="mt-4 flex flex-col gap-2 p-2">
+                    <button id="refreshBtn" type="button" class="btn-primary">Refresh Issues List</button>
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="text-xs text-slate-400">Total: <span id="count">0</span></div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="main-chat-content">
+                
+                <main class="w-full p-6">
+                    <div class="mb-6 flex items-center justify-between">
+                        <div class="text-lg font-semibold">Search the Existing Issues</div>
+                        <div id="status" class="flex items-center gap-2 text-sm" role="status" aria-live="polite">
+                            <span id="status-dot" class="status-dot" aria-hidden="true"></span>
+                            
+                        
+                        </div>
+                    </div>
+                    <span id="status-text">Connected</span>
+                    <div class="w-full flex justify-center">
+                        <div id="results" class="space-y-4 max-w-4xl" aria-live="polite" aria-atomic="true">
+                            <div class="text-sm text-slate-400">Results will appear here after checking.</div>
+                        </div>
+                    </div>
+                </main>
+                
+                <div class="query-input-wrapper">
+                    <form class="query-footer-form">
+                        <label for="queryInput" class="sr-only">Issue query</label>
+                        <textarea
+                          id="queryInput"
+                          name="query"
+                          rows="1" 
+                          placeholder="Message QA Tracker..." 
+                          class="input-area w-full" 
+                          aria-label="Query input"
+                          autocomplete="off"
+                        ></textarea>
+                        
+                        <button id="clearQueryBtn" type="button" class="btn-action">Clear</button>
+                    </form>
+                    
+                    <div class="flex gap-3 mt-4 w-full max-w-4xl justify-end">
+                        <button id="suggestBtn" type="button" class="btn-link">Suggest Similar</button>
+                        <button id="checkBtn" type="button" class="btn-primary">Check Best Match</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/common.js" defer></script>
+    <script src="./js/query.js" defer></script>
+</body>
+</html>

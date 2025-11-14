@@ -1,23 +1,24 @@
 /* frontend/css/styles.css
-    FINAL VERSION: Includes fixes for sticky header/footer, 
-    and sticky action buttons within the right-hand issues panel 
-    (for both index.html and issues.html).
+    CHATGPT-STYLE REVISION:
+    - Full width layout
+    - New color palette (softer dark mode)
+    - Left-hand navigation/sidebar for issues list
 */
 
-/* ---------- Base ---------- */
+/* ---------- Base (New Colors) ---------- */
 :root {
-  --bg-0: #0b1220; /* page background */
-  --bg-1: #071026; /* gradient */
-  --panel: #0f1724; /* panels */
-  --muted: #98a0ad;
-  --accent: #7c5cff;
-  --accent-2: #06b6d4;
-  --bubble-user: #10b981;
-  --bubble-bot: rgba(255,255,255,0.04);
-  --glass: rgba(255,255,255,0.02);
-  --card-border: rgba(255,255,255,0.03);
+  --bg-main: #202123; /* ChatGPT main body background */
+  --bg-sidebar: #2f2f32; /* ChatGPT sidebar background */
+  --bg-chat-area: #343541; /* Slightly lighter chat area */
+  --text-main: #ececf1;
+  --text-muted: #a9a9b2;
+  --accent: #10a37f; /* ChatGPT's signature accent color (teal/green) */
+  --accent-hover: #0d8a6b;
+  --bubble-user: #444654; /* User bubble background */
+  --bubble-bot: #444654; /* Bot bubble background (unified for a cleaner look) */
+  --card-border: rgba(255,255,255,0.05);
   --danger: #ef4444;
-  --radius: 14px;
+  --radius: 10px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
 }
 
@@ -26,329 +27,382 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
-  color: #e6eef6;
+  background: var(--bg-main); /* Uniform dark background */
+  color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 15px;
-  line-height: 1.35;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  height: 100vh; /* Full viewport height */
 }
 
-/* container - MODIFIED for Sticky Header/Footer */
+/* container - FULL WIDTH LAYOUT */
 .app-root {
-  padding: 28px; 
-  display: flex; 
-  align-items: flex-start; 
-  justify-content: center; 
-  min-height: 100vh;
+  display: flex;
+  width: 100%; /* Use full width */
+  height: 100%; /* Use full height */
 }
 .container {
+  /* No longer a fixed-size centered card */
   width: 100%;
-  max-width: 1100px;
-  border-radius: 16px;
+  height: 100%;
+  max-width: none;
+  border-radius: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(7,16,38,0.6), rgba(5,9,22,0.65));
-  border: 1px solid rgba(255,255,255,0.02);
-  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-  
-  /* STICKY LAYOUT SETUP */
-  height: calc(100vh - 56px); /* Fixed height */
+  background: var(--bg-main);
+  box-shadow: none;
+  display: flex; /* Flex container for sidebar + main content */
+}
+
+/* header - REPURPOSED (Only for the main chat area now) */
+header {
+  display: none; /* Header removed from main chat area */
+}
+.main-chat-content {
+    /* New wrapper for the chat log and input */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-main);
+    overflow: hidden; /* For flex layout */
+}
+
+/* main layout: The scrollable area for chat */
+main {
+  /* This now refers to the content area that scrolls within the chat */
   display: flex;
   flex-direction: column;
+  align-items: center; /* Center chat content */
+  width: 100%;
+  padding: 0;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
-/* header - Fixed top area */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 22px;
-  border-bottom: 1px solid var(--card-border);
-  flex-shrink: 0; /* Prevents header from shrinking */
-}
-.logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #071025;
-  background: linear-gradient(135deg, var(--accent), #60a5fa);
-  box-shadow: 0 6px 18px rgba(92,63,255,0.12);
-}
-header .title { display: flex; flex-direction: column; gap: 2px; }
-header .title .main { font-size: 17px; font-weight: 600; }
-header .title .sub { font-size: 13px; color: var(--muted); }
-
-/* status */
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: #f59e0b;
-  display: inline-block;
-  margin-right: 8px;
-  box-shadow: 0 0 6px rgba(245,158,11,0.15);
-}
-#status-text { color: var(--muted); font-size: 13px; }
-
-/* main layout: The scrollable area between header and input */
-main {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 18px;
-  padding: 22px;
-  flex-grow: 1; /* Fills remaining space */
-  overflow-y: auto; /* Enables scrolling for the main content area */
-}
-
-@media (max-width: 920px) {
-  main { grid-template-columns: 1fr; padding: 16px; }
-}
-
-/* left section (chat) */
+/* center chat content */
 section { 
   display: flex; 
   flex-direction: column; 
-  gap: 14px; 
-  height: 100%; 
+  gap: 16px; 
+  width: 100%;
+  max-width: 800px; /* Max width for the chat content itself */
+  padding: 24px 24px 0 24px;
+  flex-grow: 1; /* Allows it to take space */
 }
 
-/* chat log */
+/* chat log - Removed extra borders/backgrounds for ChatGPT look */
 .chat-log {
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-  border-radius: 12px;
-  padding: 18px;
-  min-height: 0; /* Reset height constraints */
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  min-height: auto;
   max-height: none; 
   overflow-y: auto;
-  border: 1px solid var(--card-border);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.01);
-  flex-grow: 1; /* Fills space above input */
+  border: none;
+  box-shadow: none;
+  flex-grow: 1;
 }
 
-/* message bubble wrapper */
+/* message bubble wrapper (FULL WIDTH, CENTERED CONTENT) */
 .chat-log .msg {
   display: flex;
   gap: 10px;
-  margin-bottom: 12px;
-  align-items: flex-end;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.02); /* Subtle separator */
+  background: var(--bg-chat-area); /* All messages get a background */
 }
+
+/* Bot/User specific backgrounds to break up the flow */
+.chat-log .msg.bot { 
+    justify-content: center; 
+    background: var(--bg-main); /* Bot messages are on the main background */
+}
+.chat-log .msg.user { 
+    justify-content: center;
+    background: var(--bg-chat-area); /* User messages are on the slightly lighter background */
+}
+
 .chat-log .msg .bubble {
-  padding: 12px 14px;
-  border-radius: 12px;
-  max-width: 78%;
+  padding: 0; /* Remove padding from bubble, content should be within a fixed width */
+  border-radius: 0;
+  max-width: 800px; /* Content width within the full-width row */
   word-break: break-word;
-  font-size: 15px;
-  box-shadow: 0 4px 20px rgba(2,6,23,0.45);
+  font-size: 16px;
+  box-shadow: none;
+  background: transparent; /* Remove bubble background */
+  color: var(--text-main);
+  border: none;
+  line-height: 1.6;
 }
 
-/* bot messages (left) */
-.chat-log .msg.bot { justify-content: flex-start; }
-.chat-log .msg.bot .bubble {
-  background: var(--bubble-bot);
-  color: #e6eef6;
-  border: 1px solid rgba(255,255,255,0.02);
-  border-top-left-radius: 6px;
+/* Avatar Placeholder (Simplified) */
+.avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    color: white;
+    margin-right: 10px;
+}
+.chat-log .msg.bot .avatar {
+    background: var(--accent); /* Bot avatar color */
+}
+.chat-log .msg.user .avatar {
+    background: #008080; /* User avatar color */
 }
 
-/* user messages (right) */
-.chat-log .msg.user { justify-content: flex-end; }
-.chat-log .msg.user .bubble {
-  background: linear-gradient(90deg, var(--bubble-user), #059669);
-  color: #042018;
-  border-radius: 12px;
-  border-bottom-right-radius: 6px;
-  font-weight: 600;
+/* Align content wrapper inside the message row */
+.chat-log .msg-content {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 24px; /* Padding for content within the row */
 }
+
 
 /* tiny meta under bubble */
-.chat-log .meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.chat-log .meta { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
 
-/* input area: row of input+send (The overall Footer area) */
+/* input area: row of input+send (Fixed at bottom) */
+.input-area-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 24px;
+    position: sticky; /* Sticky to bottom of main-chat-content */
+    bottom: 0;
+    background: var(--bg-main);
+    z-index: 10;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.1);
+}
 form#message-form {
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-top: 0; 
-  padding-top: 6px;
-  flex-shrink: 0; /* Fixed height at the bottom */
+  width: 100%;
+  max-width: 800px;
+  padding-top: 0;
+  flex-shrink: 0;
+  background: var(--bg-chat-area); /* Input container background */
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 .input {
   flex: 1;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: rgba(2,6,23,0.5);
-  border: 1px solid rgba(255,255,255,0.03);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: transparent; /* Input background is now transparent */
+  border: none;
   color: inherit;
   outline: none;
-  font-size: 15px;
-  transition: box-shadow .12s, border-color .12s;
+  font-size: 16px;
 }
 .input:focus {
-  box-shadow: 0 6px 24px rgba(2,6,23,0.6);
-  border-color: rgba(124,92,255,0.28);
+  box-shadow: none;
+  border-color: transparent;
 }
 
 /* send button - primary */
 .btn-send {
-  background: linear-gradient(180deg,#7c5cff,#5b3bff);
-  color: white;
+  background: transparent;
+  color: var(--text-muted);
   border: none;
   padding: 10px 16px;
-  border-radius: 12px;
-  font-weight: 700;
+  border-radius: var(--radius);
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(92,63,255,0.18);
-  transition: transform .08s ease;
+  box-shadow: none;
+  transition: color .12s;
+  order: 2; /* Move to right side */
 }
-.btn-send:active { transform: translateY(1px); }
+.btn-send:hover {
+    color: var(--accent);
+}
+.btn-send:active { transform: none; }
 
-/* plain small button */
 .btn-plain {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid rgba(255,255,255,0.03);
-  padding: 8px 12px;
-  border-radius: 10px;
-  cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    order: 1; /* Move to left side */
 }
 
-/* tip text */
-.tip { color: var(--muted); font-size: 13px; flex-shrink: 0; } 
 
-/* ---------- right panel: issues (Aside uses Flex column for sticky buttons) ---------- */
+/* ---------- left panel: issues (New Sidebar/Nav) ---------- */
 aside {
   display: flex;
   flex-direction: column;
+  width: 260px; /* Fixed width for sidebar */
+  flex-shrink: 0;
   gap: 12px;
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid var(--card-border);
-  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-  height: 100%; /* Ensures it fills the grid cell height */
+  padding: 10px;
+  border-radius: 0;
+  background: var(--bg-sidebar);
+  height: 100%;
+  border-right: 1px solid rgba(255,255,255,0.05);
 }
+
+/* Sidebar Header (Logo/Title) */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 8px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-header .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--bg-sidebar);
+  font-size: 14px;
+}
+.sidebar-header .title { font-size: 16px; font-weight: 600; }
 
 /* issues list (The scrollable part inside aside) */
 #issuesList { 
   overflow-y: auto; 
-  max-height: none !important; /* Force height removal */
-  flex-grow: 1 !important; /* Force growth to take remaining space */
-  padding-right: 6px; 
+  flex-grow: 1 !important;
+  padding-right: 4px;
+  margin-bottom: 20px;
 }
 
 .issue-item {
-  background: rgba(255,255,255,0.015);
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid rgba(255,255,255,0.02);
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 8px 10px;
+  border: none;
   display: block;
+  margin-bottom: 8px;
+  transition: background .15s ease;
+  cursor: pointer;
 }
-.issue-item .title { font-weight: 600; color: #e6eef6; }
-.issue-item .raw { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.issue-item:hover {
+    background: rgba(255,255,255,0.1);
+}
+.issue-item .title { font-weight: 500; color: var(--text-main); font-size: 15px; }
+.issue-item .raw { display: none; } /* Hide raw for cleaner sidebar */
 
-/* actions in right panel (The fixed button area inside aside) */
-.mt-4 { 
-  margin-top: 12px; 
-  flex-shrink: 0 !important; /* Prevents button container from shrinking (fixes buttons) */
-}
+/* actions in right panel (Sidebar buttons at the bottom) */
+.mt-4 { margin-top: 12px; }
 .btn-primary {
-  background: linear-gradient(180deg,#6b46c1,#4f46e5);
+  background: var(--accent);
   color: white;
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   flex: 1;
   font-weight: 600;
+  transition: background .15s ease;
+}
+.btn-primary:hover {
+    background: var(--accent-hover);
 }
 .btn-danger {
   background: var(--danger);
   color: white;
   padding: 10px 14px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
 }
+.btn-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: background .12s, color .12s;
+    background: var(--bg-sidebar);
+}
+.btn-link:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
 
-/* raw dump area (Also fixed at the bottom) */
+/* raw dump area - Moved to a utility area or removed for clean look */
 .raw-dump {
-  background: rgba(2,6,23,0.6);
-  padding: 10px;
-  border-radius: 8px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 12px;
-  max-height: 120px;
-  overflow: auto;
-  border: 1px solid rgba(255,255,255,0.02);
-  flex-shrink: 0 !important; /* Prevents raw dump from shrinking (fixes area) */
+    display: none; /* Hide for clean ChatGPT look */
 }
 
-/* small responsive tweaks */
-@media (max-width: 920px) {
-  .chat-log { max-height: none; min-height: auto; flex-grow: 1; }
-  #issuesList { max-height: none; flex-grow: 1; }
-  .input { padding: 10px; }
-}
-
-/* subtle helper classes for messages */
-kbd {
-  background: rgba(255,255,255,0.03);
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--muted);
-}
+/* Utility classes to make existing HTML work */
+.tip { color: var(--text-muted); font-size: 13px; margin-left: 10px; } 
 
 /* polished scrollbars (webkit) */
 .chat-log::-webkit-scrollbar,
 #issuesList::-webkit-scrollbar,
-.raw-dump::-webkit-scrollbar,
 main::-webkit-scrollbar {
-  width: 10px;
-  height: 8px;
+  width: 8px;
 }
 .chat-log::-webkit-scrollbar-thumb,
 #issuesList::-webkit-scrollbar-thumb,
-.raw-dump::-webkit-scrollbar-thumb,
 main::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.03);
-  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
 }
 
-/* small utility classes your HTML expects */
-.btn-link {
-  color: var(--muted);
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  transition: background .12s, color .12s;
+@media (max-width: 768px) {
+    aside {
+        display: none; /* Hide sidebar on mobile */
+    }
 }
-.btn-link:hover { color: #fff; background: rgba(255,255,255,0.02); }
 
-.input-area {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(2,6,23,0.45);
-  border: 1px solid rgba(255,255,255,0.03);
-  color: inherit;
-  outline: none;
-  resize: vertical;
-  font-size: 15px;
+/* --- Query Page Specific Input Bar --- */
+.query-footer-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Constrain its width like the chat input */
+    padding: 8px 16px; /* Padding inside the form container */
+    background: var(--bg-chat-area); /* Dark background */
+    border-radius: var(--radius); /* Rounded corners */
+    border: 1px solid rgba(255,255,255,0.1); /* Subtle border */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle shadow */
+    margin-top: 20px; /* Space between query and buttons */
 }
-.input-area:focus { box-shadow: 0 6px 20px rgba(2,6,23,0.5); border-color: rgba(124,92,255,0.28); }
 
-/* small accessibility helpers */
-.sr-only {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap;
+/* Make the textarea behave visually like the input */
+.query-footer-form .input-area {
+    flex: 1; /* Take up available space */
+    padding: 0; /* Remove internal padding, handled by parent form */
+    border: none; /* No internal border */
+    background: transparent; /* Transparent background */
+    resize: none; /* Prevent resizing */
+    min-height: 24px; /* Ensure it's not too small vertically */
+    height: auto; /* Allow content to dictate height, but will be limited by rows */
+    font-size: 16px;
+    line-height: 1.5;
+}
+.query-footer-form .input-area:focus {
+    box-shadow: none; /* Remove focus shadow from the text area itself */
+}
+
+/* Style for the action buttons within the fixed query input bar */
+.query-footer-form .btn-action {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color .12s;
+    white-space: nowrap; /* Keep button text on one line */
+}
+.query-footer-form .btn-action:hover {
+    color: var(--text-main);
 }
