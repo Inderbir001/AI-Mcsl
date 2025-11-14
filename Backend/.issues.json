@@ -1,58 +1,58 @@
 {
   "issues": [
     {
-      "id": "mhyulvpmuyr9rj",
-      "title": "The issue is that i am not able to login",
-      "raw": "The issue is that i am not able to login",
+      "id": "mhz1on7r5ucvfi",
+      "title": "hi",
+      "raw": "hi",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:42:49.162Z"
+      "createdAt": "2025-11-14T16:00:55.432Z"
     },
     {
-      "id": "mhyut7d2msukd4",
-      "title": "ddpnfs",
-      "raw": "ddpnfs",
+      "id": "mhz1qgvisa5v39",
+      "title": "ISSUE_TITLE: Incorrect subtotal Within Tax invoice when discount applied",
+      "raw": "ISSUE_TITLE: Incorrect subtotal Within Tax invoice when discount applied\nISSUE_DESCRIPTION: Discounted price showing in tax invoice for product &  subtotal in tax invoice  showing is based on actual price of the product",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:48:30.854Z"
+      "createdAt": "2025-11-14T16:02:20.526Z"
     },
     {
-      "id": "mhyut98jv12ju1",
-      "title": "fnpdsfds",
-      "raw": "fnpdsfds",
+      "id": "mhz1qgvjbu6kpc",
+      "title": "Store: store:[https://woocommerce-165470-2193720.cloudwaysapps.com/](https://woocommerce-165470-2193720.cloudwaysapps.co",
+      "raw": "Store: store:[https://woocommerce-165470-2193720.cloudwaysapps.com/](https://woocommerce-165470-2193720.cloudwaysapps.com/ \"smartCard-inline\")",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:48:33.283Z"
+      "createdAt": "2025-11-14T16:02:20.527Z"
     },
     {
-      "id": "mhyutb6nl9josy",
-      "title": "ndafpda",
-      "raw": "ndafpda",
+      "id": "mhz1qgvjnsm5kv",
+      "title": "order : 615 (Added 20rs discount for product price )",
+      "raw": "order : 615 (Added 20rs discount for product price )",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:48:35.808Z"
+      "createdAt": "2025-11-14T16:02:20.527Z"
     },
     {
-      "id": "mhyutd6kx11crx",
-      "title": "fnakd[pfa",
-      "raw": "fnakd[pfa",
+      "id": "mhz1qyyqzixkni",
+      "title": "ISSUE_TITLE: The Chinese characters are not being printed on the customized packing slip",
+      "raw": "ISSUE_TITLE: The Chinese characters are not being printed on the customized packing slip\nISSUE_DESCRIPTION: The Chinese characters are not being printed on the customized packing slip",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:48:38.396Z"
+      "createdAt": "2025-11-14T16:02:43.970Z"
     },
     {
-      "id": "mhyutfre3se4g5",
-      "title": "adinfk[p",
-      "raw": "adinfk[p",
+      "id": "mhz1rehzsnjkrd",
+      "title": "ISSUE_TITLE: Issue in Downloading when using the Firefox Browser",
+      "raw": "ISSUE_TITLE: Issue in Downloading when using the Firefox Browser\nISSUE_DESCRIPTION: The  downloading process is encountering an issue specifically when using the Firefox browse",
       "steps": null,
       "severity": null,
       "tags": null,
-      "createdAt": "2025-11-14T12:48:41.738Z"
+      "createdAt": "2025-11-14T16:03:04.104Z"
     }
   ]
 }

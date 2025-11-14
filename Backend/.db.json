@@ -255,6 +255,406 @@
           "text": "Handled issue submission. New: 1, Matches: 0"
         }
       ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "the issue is very cleat the login is broken"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "fwfewfew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "fewf"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "fewfew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "fwfew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "fdwf"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ewf"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "eef"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ewf"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "f"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ewf"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "f"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ew"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "few"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "few"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "hi"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 0, Matches: 1"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ISSUE_TITLE: Incorrect subtotal Within Tax invoice when discount applied\nISSUE_DESCRIPTION: Discounted price showing in tax invoice for product &  subtotal in tax invoice  showing is based on actual price of the product\n\nStore: store:[https://woocommerce-165470-2193720.cloudwaysapps.com/](https://woocommerce-165470-2193720.cloudwaysapps.com/ \"smartCard-inline\")\n\norder : 615 (Added 20rs discount for product price )"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 3, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ISSUE_TITLE: The Chinese characters are not being printed on the customized packing slip\nISSUE_DESCRIPTION: The Chinese characters are not being printed on the customized packing slip"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "ISSUE_TITLE: Issue in Downloading when using the Firefox Browser\nISSUE_DESCRIPTION: The  downloading process is encountering an issue specifically when using the Firefox browse"
+        }
+      ]
+    },
+    {
+      "role": "system",
+      "parts": [
+        {
+          "text": "Handled issue submission. New: 1, Matches: 0"
+        }
+      ]
     }
   ]
 }
